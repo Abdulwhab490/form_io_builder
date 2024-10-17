@@ -59,17 +59,18 @@ class _MyAppState extends State<MyApp> {
        
         colorScheme: ColorScheme(brightness: Brightness.light, primary: Colors.amber,
          onPrimary: Colors.amber.shade400,
-          secondary: const Color.fromARGB(255, 88, 8, 8),
+          secondary:  Color.fromARGB(255, 88, 8, 8),
            onSecondary: const Color.fromRGBO(88, 8, 8, 1),//Colors.yellow,
             error: Colors.red, 
             onError: Colors.redAccent, 
             surface: Colors.white,
              onSurface: Colors.grey,
+             surfaceContainer: Colors.grey
             
             
              ),
           
-         elevatedButtonTheme: ElevatedButtonThemeData(style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.amber),textStyle:WidgetStatePropertyAll(TextStyle(color: Colors.red)))),     
+         elevatedButtonTheme: ElevatedButtonThemeData(style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.black),textStyle:WidgetStatePropertyAll(TextStyle(color: Colors.red)))),     
         //textTheme: TextTheme().copyWith()
       ),
       home:Home());
@@ -82,36 +83,38 @@ class Home extends StatelessWidget{
     // TODO: implement build
     return  Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('Plugin example app '),
         ),
         body: Center(
-          child:  
-          
-          
-          Column(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
              //Expanded(child: FormIoBuilder(wizard,'wizard',map: {}).FormWedgit()),
            //   Text('Running on: $_platformVersion\n'),
-
-
-            ElevatedButton(child: Text('Form Wedgit'), onPressed: (){
+          
+          Spacer(),   
+          ElevatedButton(child: Text('Form Wedgit'), onPressed: (){
+            
+                Navigator.push(context, PageRouteBuilder(pageBuilder:(context,_,__)=>ShowWedgit()));
+            }
+            ),
+          Spacer(),
+              ElevatedButton(child: Text('Form Page'), onPressed: (){
               
-                  Navigator.push(context, PageRouteBuilder(pageBuilder:(context,_,__)=>ShowWedgit()));
+                  Navigator.push(context, PageRouteBuilder(pageBuilder:(context,_,__)=> FormIoBuilder(form1,'form',map: {}).FormPage() ));
               }
               ),
-
-              ElevatedButton(child: Text('Form'), onPressed: (){
-              
-                  Navigator.push(context, PageRouteBuilder(pageBuilder:(context,_,__)=> FormIoBuilder(form1,'form',map: {}).FormWedgit() ));
+           Spacer(),
+          
+              ElevatedButton(child: Text('wizard Pages'), onPressed: (){
+                    
+                  Navigator.of(context).push(MaterialPageRoute(builder:(context)=> FormIoBuilder(wizard3,'wizard',map: {}).FormPage() ));
               }
               ),
-
-
-              ElevatedButton(child: Text('wizard2'), onPressed: (){
-      
-                  Navigator.of(context).push(MaterialPageRoute(builder:(context)=> FormIoBuilder(wizard3,'wizard',map: {}).FormWedgit() ));
-              }
-              )
+          
+              Spacer(), 
             ],
           ),
         ),

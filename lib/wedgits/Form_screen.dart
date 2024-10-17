@@ -87,7 +87,7 @@ class FormScreen extends StatelessWidget{
                                   onSubmit!(mapAnswers);
                           },
                           
-                          child:Text("حفظ",style: ThemeApp.headline1,),
+                          child:Text("حفظ",),
                         ),
                             ]
                           
