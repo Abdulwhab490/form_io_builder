@@ -26,7 +26,7 @@ Full support for data collection and sending it to any recipient.
 Flexible and easy-to-customize interface.
 
 ## example json data
-final form1={
+final form1= {
     "display": "form",
     "settings": {
         "pdf": {
