@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:form_io_builder/styles/theme_app.dart';
-import 'package:form_io_builder/wedgits/textFieldwithlabel.dart';
+import 'package:form_io_builder/widgets/textFieldwithlabel.dart';
 import '../utils/iterable_extension.dart';
 
 

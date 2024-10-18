@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:form_io_builder/wedgits/Form_widget.dart';
+import 'package:form_io_builder/widgets/Form_widget.dart';
 
 import '../styles/theme_app.dart';
 import '../utils/utils.dart';
@@ -251,7 +251,7 @@ final GlobalKey key=GlobalKey();
                               pages.indexOf(pages.firstWhere(
                                       (element) => element['key'] == currentPageId)) ==
                                   pages.length-1  && widget.operationType !=
-                                          OperationType.show )
+                                          OperationType.show  )
                             Flexible(
                               child: ElevatedButton(
                                 onPressed: () {

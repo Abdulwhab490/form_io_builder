@@ -4,7 +4,6 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   file_selector_windows
-  form_io_builder
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

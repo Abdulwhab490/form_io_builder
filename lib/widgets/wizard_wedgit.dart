@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:form_io_builder/wedgits/Form_widget.dart';
+import 'package:form_io_builder/widgets/Form_widget.dart';
 
 import '../styles/theme_app.dart';
 import '../utils/utils.dart';

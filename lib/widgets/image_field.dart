@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:form_io_builder/styles/theme_app.dart';
-import 'package:form_io_builder/wedgits/multi_file_uploader.dart';
+import 'package:form_io_builder/widgets/multi_file_uploader.dart';
 
 import '../utils/utils.dart';
-import 'multi_Bease64_uploader.dart';
+import '../widgets/multi_Bease64_uploader.dart';
 
 Widget image_wedgit(Item, Map<String, dynamic> map, pType, {row,minLines=1,show=false}) {
   printO("Contains  ${Item["key"]}  ${map.containsKey(Item["key"])}");

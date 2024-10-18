@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/scheduler/ticker.dart';
 import 'package:form_io_builder/form_io_builder.dart';
+import 'package:form_io_builder/utils/utils.dart';
 import 'package:form_io_builder_example/contacst.dart';
 
 class ShowWedgit extends StatefulWidget  {
@@ -40,9 +41,13 @@ class _ShowWedgitState extends State<ShowWedgit> with SingleTickerProviderStateM
         controller: _tabController,
         children: [
 
-          FormIoBuilder(form1,'form',map: {}).FormWedgit() ,
+          WidgetBuild(formData:form1,title:'form',mapAnswers: {}, operationType:OperationType.edit ,isShowButtonSave: true,onSubmit: (value){
+                    print('===============Data SubMit ================= $value ==============');
+                  },) ,
 
-          FormIoBuilder(wizard3,'wizard',map: {}).FormWedgit() 
+          WidgetBuild(formData:wizard3,title:'wizard',mapAnswers: {}, operationType:OperationType.edit ,isShowButtonSave: true,onSubmit: (value){
+                    print('===============Data SubMit ================= $value ==============');
+                  },)
       ]),
     );
   }

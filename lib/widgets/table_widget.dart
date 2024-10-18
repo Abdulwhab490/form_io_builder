@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:form_io_builder/wedgits/Form_widget.dart';
+import 'package:form_io_builder/widgets/Form_widget.dart';
 
 Widget table(Item, map,{show=false}) {
   //List<Widget> ld= [];

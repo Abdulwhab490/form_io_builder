@@ -2,13 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_io_builder/utils/utils.dart';
-import 'package:form_io_builder/wedgits/check_widget.dart';
-import 'package:form_io_builder/wedgits/date_time_paker.dart';
-import 'package:form_io_builder/wedgits/image_field.dart';
-import 'package:form_io_builder/wedgits/layout_widget.dart';
-import 'package:form_io_builder/wedgits/selectfield.dart';
-import 'package:form_io_builder/wedgits/table_widget.dart';
-import 'package:form_io_builder/wedgits/textFieldwithlabel.dart';
+import 'package:form_io_builder/widgets/check_widget.dart';
+import 'package:form_io_builder/widgets/date_time_paker.dart';
+import 'package:form_io_builder/widgets/image_field.dart';
+import 'package:form_io_builder/widgets/layout_widget.dart';
+import 'package:form_io_builder/widgets/selectfield.dart';
+import 'package:form_io_builder/widgets/table_widget.dart';
+import 'package:form_io_builder/widgets/textFieldwithlabel.dart';
 
 List<Widget> FormListWedgit( Jsons, Map<String, dynamic> map, {pType = 1,show=false}) {
   List<Widget> listD = [];
