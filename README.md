@@ -24,6 +24,14 @@ Easy integration with Form.io.
 Dynamically display custom forms within Flutter applications.
 Full support for data collection and sending it to any recipient.
 Flexible and easy-to-customize interface.
+## Widget Form 
+show detail form as widget in page. \
+
+![](./screenshoot/widgetform.png)
+
+## Widget Pages 
+show detail pages  as widget in page. \
+![](./screenshoot/widgetpage.png)
 
 ## example json data
 final form1= {
