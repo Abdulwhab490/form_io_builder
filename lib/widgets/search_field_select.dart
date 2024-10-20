@@ -70,7 +70,8 @@ class _SearchFieldSelectState extends State<SearchFieldSelect> {
           Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: Text(widget.labelText!,
-                  style: ThemeApp.headline2)),
+                  //style: ThemeApp.headline2
+                  )),
         FormField(
           // placeHolder: widget.hint,
           // readOnly: true,
@@ -93,21 +94,26 @@ class _SearchFieldSelectState extends State<SearchFieldSelect> {
                     child:widget.isMultiple!?
                       ListTile(
                       title:  Wrap(
-                        spacing: 0.0,
+                        spacing: 5.0,
                         crossAxisAlignment: WrapCrossAlignment.start,
                       direction: Axis.horizontal,
                       verticalDirection: VerticalDirection.down,
                       alignment: WrapAlignment.start,
                       runAlignment: WrapAlignment.start,
                       runSpacing: 1.0,
+                      
                       children: [
+                        if(values.isEmpty)
+                        Text('${ widget.hint}',
+                        //style: ThemeApp.headline2,
+                        ),
                            for(var item in values??[])
                              ChoiceChip(label: Text('${item.text}'), selected: true)
                       ]),
                       trailing: widget.suffixIcon??SizedBox(),
                      
                     ):ListTile(
-                      title:  Text('${title?? widget.hint}'),
+                      title:  Text('${title?? widget.hint}',style: ThemeApp.headline2,),
                       trailing: widget.suffixIcon??SizedBox(),
                       
                     ) ,
@@ -122,6 +128,7 @@ class _SearchFieldSelectState extends State<SearchFieldSelect> {
                       return Column(
                         children: [
                           textFieldWithOnChange(
+                            lable: 'search',
                               onChanged: (value) => setStateWidget(() => list =
                                   widget.items
                                       .where(
@@ -161,7 +168,7 @@ class _SearchFieldSelectState extends State<SearchFieldSelect> {
                                                 }
                                               });
                                             },
-                                      checkColor: Theme.of(context).primaryColor,
+                                   
                                     )
                                   else
                                     RadioListTile<DropItem?>(
