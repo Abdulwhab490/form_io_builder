@@ -243,10 +243,11 @@ final GlobalKey key=GlobalKey();
                                       formKey.currentState!.validate()) {
                                         formKey.currentState!.save();
                                       printO('================ Pref ====== map====== ${widget.mapAnswers}');
+                                       if(widget.onSubmit!=null)
+                                        widget.onSubmit!(widget.mapAnswers);
                                       }
               
-                                      if(widget.onSubmit!=null)
-                                        widget.onSubmit!(widget.mapAnswers);
+                                      
                                 },
                                 
                                 child:Text("حفظ"),

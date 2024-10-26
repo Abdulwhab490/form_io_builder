@@ -82,9 +82,10 @@ class FormScreen extends StatelessWidget{
                                 formKey.currentState!.validate()) {
                                   formKey.currentState!.save();
                                 printO('================ Pref ====== map====== ${mapAnswers}');
-                                }
                                 if(onSubmit!=null)
                                   onSubmit!(mapAnswers);
+                                }
+                                
                           },
                           
                           child:Text("حفظ",),

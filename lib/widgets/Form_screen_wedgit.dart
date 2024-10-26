@@ -43,9 +43,12 @@ class FormScreenWedgit extends StatelessWidget{
     return  Padding(
      padding: const EdgeInsets.symmetric(horizontal:16.0),
      child: Column(
+       mainAxisSize: MainAxisSize.min,
        children: [
           
-         Expanded(child: Form(
+         Flexible(
+          fit: FlexFit.loose,
+          child: Form(
            key: formKey,
            onWillPop: () => _onWillPop(context),
            child: ListView.custom(
@@ -64,9 +67,10 @@ class FormScreenWedgit extends StatelessWidget{
                            formKey.currentState!.validate()) {
                              formKey.currentState!.save();
                            printO('================ Pref ====== map====== ${mapAnswers}');
-                           }
                            if(onSubmit!=null)
                              onSubmit!(mapAnswers);
+                           }
+                           
                      },
                      
                      child:Text("حفظ"),
