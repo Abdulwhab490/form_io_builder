@@ -127,7 +127,7 @@ Widget GridDataW(Item, Map<String, dynamic> map,{show=false}) {
                           padding: EdgeInsets.only(top: 10.0,bottom: 10),
                           decoration: BoxDecoration(
                               border:
-                                  Border.all(color: ThemeApp.primaryColor, width: 1)),
+                                  Border.all(color: ThemeApp!.borderColor, width: 1)),
                           child: Wrap(
                             spacing: 5.0,
                             children: list,
@@ -149,7 +149,7 @@ Widget GridDataW(Item, Map<String, dynamic> map,{show=false}) {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 CupertinoButton(
-                                  color: ThemeApp.primaryColor,
+                                  color: ThemeApp!.primaryColor,
                                   padding: EdgeInsets.only(left: 20,right: 20),
                                   onPressed: () {
                                     listMap.add(new Map<String, dynamic>());
@@ -167,13 +167,7 @@ Widget GridDataW(Item, Map<String, dynamic> map,{show=false}) {
                                         .toList());
                                     stream.add(listparent);
                                   },
-                                  child: Text("${Item['addAnother']}",style:  TextStyle(
-                                      fontFamily: 'Tajawal',
-                                      fontSize: 14,
-                                     // color: const Color(0xff42487e),
-                                      height: 1
-
-                                  ),),
+                                  child: Text("${Item['addAnother']}",style:  ThemeApp?.buttonTextStyle,),
                                 ),
                                 SizedBox(
                                   width: 10,
@@ -190,7 +184,7 @@ Widget GridDataW(Item, Map<String, dynamic> map,{show=false}) {
 
                                           stream.add(listparent);
                                         },
-                                        child: Text("delete",style:  ThemeApp.headline2,),
+                                        child: Text("delete",style:  ThemeApp?.buttonTextStyle,),
                                         // style: ButtonStyle(
                                         //     backgroundColor:
                                         //         MaterialStateProperty.all(
@@ -226,7 +220,7 @@ return
           padding: EdgeInsets.only(top:8,right: 8,left: 8),
       //    width: config.App(settingRes.navigatorKey.currentContext).appWidth(60),
           child: Text("${Item['legend'] != null && Item['legend'].toString().isNotEmpty ? Item['legend'] :Item['label'] != null ? Item['label']:''}",
-          style:  ThemeApp.headline2),
+          style:  ThemeApp?.headline1),
         ),
         Column(
          mainAxisAlignment: MainAxisAlignment.start, 

@@ -109,7 +109,7 @@ Widget FormWedgit(ItemJson, Map<String, dynamic> map, pType, {row,show=false}) {
       // if(settingRes.formTypeShow.value)
       //   widget =HtmlField(ItemJson, map, pType, row: row);
       // else
-        widget = SelectWithOnChange(ItemJson, map, pType,enable: show);
+        widget = SelectWithOnChange(ItemJson, map,enable: show);
 
       break;
 

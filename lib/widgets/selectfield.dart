@@ -6,20 +6,55 @@ import 'package:form_io_builder/repository/repsitory_data.dart';
 import '../utils/utils.dart';
 import 'search_field_select.dart';
 
+class SelectWithOnChange extends StatefulWidget  {
+ var Item;
+ Map<String, dynamic> map;
+ var onchange;
+ var row= '';
+ var width= 400;
+ var height;
+ var firstItem;
+ var enable;
 
 
+  SelectWithOnChange(this.Item, this.map,
+    {this.onchange, this.row= '', this.width= 400, this.height, this.firstItem,this.enable});
+  @override
+  State<SelectWithOnChange> createState() => _SelectWithOnChangeState();
+}
 
-Widget SelectWithOnChange(Item, Map<String, dynamic> map, pType,
+class _SelectWithOnChangeState extends State<SelectWithOnChange> {
+ StreamController selectStream = new StreamController.broadcast();
+  @override
+  void initState() {
+    // TODO: implement initState
+
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+      // This function will execute after the widget is built
+       GetSeletItemsMap(selectStream, widget.Item,firstItem: widget.firstItem);
+    });
+
+    super.initState();
+  }
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return SelectWithOnChange1(selectStream,widget.Item,widget.map,onchange: widget.onchange,row: widget.row,height: widget.height,enable: widget.enable,firstItem: widget.firstItem,width: widget.width);
+  }
+}
+
+
+Widget SelectWithOnChange1(selectStream,Item, Map<String, dynamic> map,
     {onchange, row= '', width= 400, height, firstItem,enable}) {
-  StreamController selectStream = new StreamController.broadcast();
+  //StreamController selectStream = new StreamController.broadcast();
  var listMap=[];
  selectStream.stream.listen((data){
    if(data !=null)
     listMap=data;
  });
- Future.delayed(Duration(seconds: 1)).then((value){
-    GetSeletItemsMap(selectStream, Item,firstItem: firstItem);
- },);
+/// Future.delayed(Duration(seconds: 1)).then((value){
+    // GetSeletItemsMap(selectStream, Item,firstItem: firstItem);
+// },);
    
  
   printO("Contains  ${Item["key"]}  ${map.containsKey(Item["key"])}");
@@ -28,7 +63,7 @@ Widget SelectWithOnChange(Item, Map<String, dynamic> map, pType,
       builder: (context, AsyncSnapshot snapshot) {
         // if(firstItem!=null && !(snapshot.data as List<DropdownMenuItem>).contains(firstItem))
         //   (snapshot.data as List<DropdownMenuItem>).insert(0,firstItem);
-       printO(" ==================== StreamBuilder ${Item["key"]}========  ${snapshot.data}");
+       printO(" ==================== StreamBuilder ${Item["key"]} ${map[Item["key"]]}========  ${snapshot.data}");
       return      Padding(
               padding: const EdgeInsets.only(left: 8, right: 8),
               child: Column(

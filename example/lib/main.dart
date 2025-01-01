@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_io_builder/form_io_builder.dart';
 import 'package:form_io_builder/utils/utils.dart';
+import 'package:form_io_builder_example/runtime_form.dart';
 import 'show_wedgit.dart';
 
 import 'contacst.dart';
@@ -95,6 +96,16 @@ class Home extends StatelessWidget{
               ),
           
               Spacer(), 
+
+              ElevatedButton(child: Text('info Employ'), onPressed: (){
+                    
+                  Navigator.of(context).push(MaterialPageRoute(builder:(context)=>RunTimeForm()  ));
+              }
+              ),
+          
+              Spacer(), 
+
+                
             ],
           ),
         ),
@@ -105,15 +116,3 @@ class Home extends StatelessWidget{
 
 }
 
-
-class testScreen extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Scaffold(
-      appBar: AppBar(title: Text('Hi man'),),
-      body: Container(),
-    );
-  }
-
-} 

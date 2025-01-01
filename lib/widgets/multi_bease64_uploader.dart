@@ -166,7 +166,7 @@ class _MultiFileUploaderState extends State<MultiBase64Uploader> {
                       decoration: BoxDecoration(
                           borderRadius:
                               BorderRadius.circular(8),
-                          border: Border.all(color: ThemeApp.borderColor)),
+                          border: Border.all(color: ThemeApp!.borderColor)),
                       child: ClipRRect(
                         borderRadius:
                             BorderRadius.circular(8),
@@ -186,10 +186,10 @@ class _MultiFileUploaderState extends State<MultiBase64Uploader> {
                                            Container(
                                                padding: EdgeInsets.all(10),
                                                decoration: BoxDecoration(
-                                                 color: ThemeApp.borderColor,
+                                                 color: ThemeApp!.borderColor,
                                                  borderRadius: BorderRadius.all(Radius.circular(12)),
                                                ),
-                                               child: Icon(Icons.cloud_upload_sharp,color: ThemeApp.primaryColor,)),
+                                               child: Icon(Icons.cloud_upload_sharp,color: ThemeApp?.primaryColor,)),
                                                            
                                            SizedBox(width: 10,),
                                                            
@@ -197,10 +197,10 @@ class _MultiFileUploaderState extends State<MultiBase64Uploader> {
                                              crossAxisAlignment: CrossAxisAlignment.start,
                                              children: [
                                                            
-                                             Text('${widget.Item['label']??'attachments'}',style:ThemeApp.headline1 ,),
+                                             Text('${widget.Item['label']??'attachments'}',style:ThemeApp!.headline2 ,),
                                                            
                                                            
-                                           Text('Upload files or photos',style: ThemeApp.headline2,),
+                                           Text('Upload files or photos',style: ThemeApp!.headline2,),
                                              ],
                                            ),
                                          ],
@@ -309,10 +309,10 @@ class _ImageWidget extends StatelessWidget {
           child: Container(
             alignment: Alignment.center,
             height: 40,
-            color: ThemeApp.errorColor,
+            color: ThemeApp!.errorColor,
             child: Icon(
               Icons.delete,
-              color: ThemeApp.onPrimaryColor,
+              color: ThemeApp!.onPrimaryColor,
             ),
           ),
         ),
@@ -334,15 +334,16 @@ class _ShowImageDialog extends StatelessWidget {
     return AlertDialog(
       actions: [
         Center(
-          child:Image.file(File(image),
-             height: size.height * 0.3,
-            width: size.width,
-          )
-          //  Image.memory(
-          //   base64.decode(image),
-          //   height: size.height * 0.3,
+          child:
+          // Image.file(File(image),
+          //    height: size.height * 0.3,
           //   width: size.width,
-          // ),
+          // )
+           Image.memory(
+            base64.decode(image),
+            height: size.height * 0.3,
+            width: size.width,
+          ),
         ),
         Padding(
           padding: const EdgeInsets.all(16),

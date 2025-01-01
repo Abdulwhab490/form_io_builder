@@ -1,9 +1,12 @@
 
 
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
 enum OperationType{edit,show}
 
 class Utils {
@@ -77,3 +80,25 @@ Color dynamicColor(String color) {
 
     debugPrint(message);
   }
+
+fileDirectory()async{
+  final tempDir = await getTemporaryDirectory();
+
+  return tempDir.path;
+}
+Future<void> openBase64File(String base64String, String fileName) async {
+  // Decode Base64 string to bytes
+  final bytes = base64Decode(base64String);
+
+  // Get the temporary directory
+  final directory = await getTemporaryDirectory();
+  
+  // Create a file in the temporary directory
+  final file = File('${directory.path}/$fileName');
+
+  // Write the bytes to the file
+  await file.writeAsBytes(bytes);
+
+  // Open the file using open_file package
+  await OpenFile.open(file.path);
+}  

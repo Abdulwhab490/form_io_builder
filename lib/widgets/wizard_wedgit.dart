@@ -28,7 +28,7 @@ class _WizardState extends State<WizardWedgit> {
         builder: (context) => Directionality(
           textDirection: TextDirection.rtl,
           child: AlertDialog(
-            title: Text("هل تريد الرجوع؟", style: ThemeApp.headline1),
+            title: Text("هل تريد الرجوع؟", style: ThemeApp?.headline1),
             actions: <Widget>[
               TextButton(
                 onPressed: () => Navigator.of(context).pop(false),
@@ -97,7 +97,7 @@ final GlobalKey key=GlobalKey();
                 slivers: [
                   SliverAppBar(
                     expandedHeight: pages.length > 1 ? 120 : 60,
-                    backgroundColor: ThemeApp.onPrimaryColor,
+                    backgroundColor: ThemeApp?.onPrimaryColor,
                     leading: const SizedBox.shrink(),
                     flexibleSpace: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -127,12 +127,12 @@ final GlobalKey key=GlobalKey();
                                     },
                                     child: CircleAvatar(
                                       backgroundColor: page['key'] == currentPageId
-                                          ? ThemeApp.secondaryColor
-                                          : ThemeApp.primaryColor,
+                                          ? ThemeApp?.secondaryColor
+                                          : ThemeApp?.primaryColor,
                                       child: Text(
                                         "${pages.indexOf(page) + 1}",
-                                        style: ThemeApp.headline1.copyWith(
-                                            color: ThemeApp.onPrimaryColor),
+                                        style: ThemeApp?.headline1.copyWith(
+                                            color: ThemeApp?.onPrimaryColor),
                                       ),
                                     ),
                                   ),
@@ -153,7 +153,7 @@ final GlobalKey key=GlobalKey();
                                             element['key'] == currentPageId).firstOrNull
                                         ?['title'] ??
                                     "",
-                                style: ThemeApp.headline1,
+                                style: ThemeApp?.headline1,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),
@@ -237,6 +237,7 @@ final GlobalKey key=GlobalKey();
                                           OperationType.show )
                             Flexible(
                               child: ElevatedButton(
+                                style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(ThemeApp!.primaryColor)),
                                 onPressed: () {
                                       if (widget.operationType ==
                                           OperationType.show ||
@@ -250,7 +251,7 @@ final GlobalKey key=GlobalKey();
                                       
                                 },
                                 
-                                child:Text("حفظ"),
+                              child:Text("حفظ",style: ThemeApp?.buttonTextStyle,),
                               ),
                             ),
                           

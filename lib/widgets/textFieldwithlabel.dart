@@ -45,16 +45,17 @@ class textFieldWithOnChange extends StatelessWidget{
                              keyboardType:InputType,
                             // enabled: _con.loading.,
                              // controller: _con!.userName,
-                             style: ThemeApp.headline2,
+                             style: ThemeApp?.headline2,
                             
                              textAlign: TextAlign.right,
                              onChanged: onChanged??null,
                              validator:validator==null? (input) => (input==null || input.isEmpty)? validmessage: null:validator,
                              decoration: InputDecoration(
                                hintText: lable,
+                               hintStyle: ThemeApp!.hintStyle,
                                suffixIcon:suffixIcon ,
                                prefixIcon:prefixIcon ,
-                               border: OutlineInputBorder(borderSide: BorderSide(color: Utils.instance.dynamicColor('#A4A7C1'),width: 1),borderRadius: BorderRadius.all(Radius.circular(12))),
+                               border: OutlineInputBorder(borderSide: BorderSide(color: ThemeApp!.borderColor,width: 1),borderRadius: BorderRadius.all(Radius.circular(12))),
                                focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).focusColor.withOpacity(0.5),width: 1),borderRadius: BorderRadius.all(Radius.circular(12))),
                                // enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).focusColor.withOpacity(0.2))),
                              ),
@@ -115,7 +116,7 @@ class textFieldWithLable extends StatelessWidget{
                              keyboardType:InputType,
                             // enabled: _con.loading.,
                              // controller: _con!.userName,
-                             style: ThemeApp.headline2,
+                             style: ThemeApp?.headline2,
                             initialValue: map[IKey] ,
                              textAlign: TextAlign.right,
                              onSaved: (input) {
@@ -125,8 +126,8 @@ class textFieldWithLable extends StatelessWidget{
                              validator:validator==null? (input) => (input==null || input.isEmpty)? validmessage: null:validator,
                              decoration: InputDecoration(
                                hintText: lable,
-                             
-                               border: OutlineInputBorder(borderSide: BorderSide(color: Utils.instance.dynamicColor('#A4A7C1'),width: 1),borderRadius: BorderRadius.all(Radius.circular(12))),
+                               hintStyle: ThemeApp!.hintStyle,
+                               border: OutlineInputBorder(borderSide: BorderSide(color: ThemeApp!.borderColor,width: 1),borderRadius: BorderRadius.all(Radius.circular(12))),
                                focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).focusColor.withOpacity(0.5),width: 1),borderRadius: BorderRadius.all(Radius.circular(12))),
                                // enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).focusColor.withOpacity(0.2))),
                              ),
@@ -181,7 +182,7 @@ class textFieldNumWithLable extends StatelessWidget{
                              keyboardType: TextInputType.number,
                             // enabled: _con.loading.,
                              // controller: _con!.userName,
-                             style: ThemeApp.headline2,
+                             style: ThemeApp?.headline2,
                             initialValue: map[IKey]!=null?map[IKey].toString():null ,
                              textAlign: TextAlign.right,
                              onSaved: (input){
@@ -193,8 +194,8 @@ class textFieldNumWithLable extends StatelessWidget{
                              validator: (input) => (input==null || input.isEmpty)? validmessage: null,
                              decoration: InputDecoration(
                                hintText: lable,
-                             
-                               border: OutlineInputBorder(borderSide: BorderSide(color: Utils.instance.dynamicColor('#A4A7C1'),width: 1),borderRadius: BorderRadius.all(Radius.circular(12))),
+                               hintStyle: ThemeApp!.hintStyle,
+                               border: OutlineInputBorder(borderSide: BorderSide(color: ThemeApp!.borderColor,width: 1),borderRadius: BorderRadius.all(Radius.circular(12))),
                                focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).focusColor.withOpacity(0.5),width: 1),borderRadius: BorderRadius.all(Radius.circular(12))),
                                // enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).focusColor.withOpacity(0.2))),
                              ),
@@ -269,13 +270,7 @@ Widget textField(Item, Map<String, dynamic> map, pType, {row,minLines=1,show=fal
             keyboardType: checkFieldType(Item["type"]),
             maxLines: 100,
             minLines: minLines??1,
-            style:  TextStyle(
-                fontFamily: 'Tajawal',
-                fontSize: 14,
-                color: const Color(0xff42487e),
-                height: 1
-          
-            ),
+            style:  ThemeApp!.headline2,
             onSaved: (value) {
               if(value!=null)
               map[Item["key"]] = value;
@@ -284,9 +279,9 @@ Widget textField(Item, Map<String, dynamic> map, pType, {row,minLines=1,show=fal
                 hintText: Item['hideLabel'] != null && Item['hideLabel']
                     ? ''
                     : Item["label"],
-                hintStyle:  ThemeApp.headline2,
+                hintStyle:  ThemeApp!.hintStyle,
                 border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.lightBlue, width: 1),
+                    borderSide: BorderSide(color: ThemeApp!.borderColor, width: 1),
                     borderRadius: BorderRadius.all(Radius.circular(10)))
           
                 // ,fillColor: Color(0xfff0f0f5),
@@ -356,7 +351,7 @@ Widget textFieldNum(Item, Map<String, dynamic> map, pType, {row,minLines=1,show=
            
             //maxLines: 100,
             minLines: 1,
-            style: ThemeApp.headline2,
+            style: ThemeApp!.headline2,
             // onChanged: (value){
             //    map[Item["key"]] = value;
             // },
@@ -368,9 +363,9 @@ Widget textFieldNum(Item, Map<String, dynamic> map, pType, {row,minLines=1,show=
                 hintText: Item['hideLabel'] != null && Item['hideLabel']
                     ? ''
                     : Item["label"],
-                hintStyle:  ThemeApp.headline2,
+                hintStyle:  ThemeApp!.hintStyle,
                 border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.lightBlue, width: 1),
+                    borderSide: BorderSide(color: ThemeApp!.borderColor, width: 1),
                     borderRadius: BorderRadius.all(Radius.circular(10)))
           
                 // ,fillColor: Color(0xfff0f0f5),
@@ -432,7 +427,7 @@ Widget textFieldPhone(Item, Map<String, dynamic> map, pType, {row,minLines=1,sho
             keyboardType: TextInputType.phone,
             maxLines: 100,
             minLines: 1,
-            style:  ThemeApp.headline2,
+            style:  ThemeApp!.headline2,
             onSaved: (value) {
               if(value!=null)
               map[Item["key"]] = value;
@@ -441,9 +436,9 @@ Widget textFieldPhone(Item, Map<String, dynamic> map, pType, {row,minLines=1,sho
                 hintText: Item['hideLabel'] != null && Item['hideLabel']
                     ? ''
                     : Item["label"],
-                hintStyle:  ThemeApp.headline2,
+                hintStyle:  ThemeApp!.hintStyle,
                 border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.lightBlue, width: 1),
+                    borderSide: BorderSide(color: ThemeApp!.borderColor, width: 1),
                     borderRadius: BorderRadius.all(Radius.circular(10)))
           
                 // ,fillColor: Color(0xfff0f0f5),
@@ -512,7 +507,7 @@ Widget textFieldPassword(Item, Map<String, dynamic> map, pType, {row,minLines=1,
                         controller: _texteditController,
                          //maxLines: 100,
                         // minLines: 1,
-                         style:  ThemeApp.headline2,
+                         style:  ThemeApp!.headline2,
                         obscureText: snapshot.data??true,
                        
                          onSaved: (value) {
@@ -531,9 +526,9 @@ Widget textFieldPassword(Item, Map<String, dynamic> map, pType, {row,minLines=1,
                                        hintText: Item['hideLabel'] != null && Item['hideLabel']
                         ? ''
                         : Item["label"],
-                                       hintStyle:  ThemeApp.headline2,
+                                       hintStyle:  ThemeApp!.hintStyle,
                                        border: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.lightBlue, width: 1),
+                        borderSide: BorderSide(color: ThemeApp!.borderColor, width: 1),
                         borderRadius: BorderRadius.all(Radius.circular(10)))
                                     
                                        // ,fillColor: Color(0xfff0f0f5),
@@ -594,7 +589,7 @@ Widget textFieldEmail(Item, Map<String, dynamic> map, pType, {row,minLines=1,sho
             maxLines: 100,
             minLines: 1,
             controller: _texteditController,
-            style:  ThemeApp.headline2,
+            style:  ThemeApp!.headline2,
             onSaved: (value) {
               if (value != null)
               map[Item["key"]] = value;
@@ -603,9 +598,9 @@ Widget textFieldEmail(Item, Map<String, dynamic> map, pType, {row,minLines=1,sho
                 hintText: Item['hideLabel'] != null && Item['hideLabel']
                     ? ''
                     : Item["label"],
-                hintStyle:  ThemeApp.headline2,
+                hintStyle:  ThemeApp!.hintStyle,
                 border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.lightBlue, width: 1),
+                    borderSide: BorderSide(color: ThemeApp!.borderColor, width: 1),
                     borderRadius: BorderRadius.all(Radius.circular(10)))
           
                 // ,fillColor: Color(0xfff0f0f5),

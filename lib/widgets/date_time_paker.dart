@@ -36,7 +36,7 @@ DateTimePaker(Item, Map map, inputType, {ptype= 1, row= '',height=50,show=false}
                 // "key"]], //map.containsKey(map[Item["key"]]) ?map[Item["key"]]:null,
                   // onChanged: _onChanged,
                   readOnly: true,
-                  style:  ThemeApp.headline2,
+                  style:  ThemeApp!.headline2,
                   onSaved: (value) {
                     if (value != null)
                       map[Item["key"]] = value;
@@ -52,9 +52,11 @@ DateTimePaker(Item, Map map, inputType, {ptype= 1, row= '',height=50,show=false}
                       hintText: Item['hideLabel'] != null && Item['hideLabel']
                 ? ''
                 : Item['label'],
-                      hintStyle:  ThemeApp.headline2,
+                      hintStyle:  ThemeApp!.hintStyle,
                       suffixIcon: Icon(Icons.date_range_sharp),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
+                      border: OutlineInputBorder(
+                        
+                        borderRadius: BorderRadius.all(Radius.circular(10)))),
                //   initialTime: TimeOfDay(hour: 8, minute: 0),
                   validator: FormBuilderValidators.compose([
                     if (Item['validate'] != null &&

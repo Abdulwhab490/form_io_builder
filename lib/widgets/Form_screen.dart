@@ -20,7 +20,7 @@ class FormScreen extends StatelessWidget{
         builder: (context) => Directionality(
           textDirection: TextDirection.rtl,
           child: AlertDialog(
-            title: Text("هل تريد الرجوع؟", style: ThemeApp.headline1),
+            title: Text("هل تريد الرجوع؟", style: ThemeApp!.headline1),
             actions: <Widget>[
               TextButton(
                 onPressed: () => Navigator.of(context).pop(false),
@@ -45,7 +45,7 @@ class FormScreen extends StatelessWidget{
       
       child: Scaffold(
       appBar:  AppBar(
-                  backgroundColor: ThemeApp.onPrimaryColor,
+                  backgroundColor: ThemeApp!.primaryColor,
                   centerTitle:true ,
                   leading: BackButton(),
                   // IconButton(
@@ -56,9 +56,9 @@ class FormScreen extends StatelessWidget{
                   //       color: Colors.black.withOpacity(0.7),
                   //     )),
                     
-                    title: Text(title,style: ThemeApp.headline1,),
+                    title: Text(title,style: ThemeApp!.headline1.copyWith(color:ThemeApp!.onPrimaryColor ),),
                 ),
-        backgroundColor: ThemeApp.onPrimaryColor,
+        backgroundColor: ThemeApp!.onPrimaryColor,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal:16.0),
           child: Column(
@@ -75,7 +75,7 @@ class FormScreen extends StatelessWidget{
                        ... [ 
                       //  const SizedBox(height: 8,),
                         ElevatedButton(
-                          
+                          style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(ThemeApp!.primaryColor)),
                           onPressed: () {
                                 if (operationType ==
                                     OperationType.show ||
@@ -88,7 +88,7 @@ class FormScreen extends StatelessWidget{
                                 
                           },
                           
-                          child:Text("حفظ",),
+                          child:Text("حفظ",style: ThemeApp!.buttonTextStyle,),
                         ),
                             ]
                           

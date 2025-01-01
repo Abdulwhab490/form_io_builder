@@ -54,14 +54,14 @@ class _SearchFieldSelectState extends State<SearchFieldSelect> {
 
   @override
   Widget build(BuildContext context) {
- 
+    initial();
     String? title ;
     if (value?.text != null) {
       title =value?.text;
     } else if (widget.values?.isNotEmpty == true) {
       title = "${widget.values?.length} من: ${widget.items.length}";
     }
-
+    
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,7 +113,7 @@ class _SearchFieldSelectState extends State<SearchFieldSelect> {
                       trailing: widget.suffixIcon??SizedBox(),
                      
                     ):ListTile(
-                      title:  Text('${title?? widget.hint}',style: ThemeApp.headline2,),
+                      title:  Text('${title?? widget.hint}',style: ThemeApp!.headline2,),
                       trailing: widget.suffixIcon??SizedBox(),
                       
                     ) ,
@@ -145,7 +145,7 @@ class _SearchFieldSelectState extends State<SearchFieldSelect> {
                                       title: Text(
                                         item.text!,
                                         style:
-                                            ThemeApp.headline2,
+                                            ThemeApp!.headline2,
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                       ),
@@ -176,7 +176,7 @@ class _SearchFieldSelectState extends State<SearchFieldSelect> {
                                       title: Text(
                                         item.text!,
                                         style:
-                                            ThemeApp.headline2,
+                                            ThemeApp!.headline2,
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                       ),
@@ -203,7 +203,7 @@ class _SearchFieldSelectState extends State<SearchFieldSelect> {
               
                 if (formFieldState.hasError) ...[
             Container(
-              color: ThemeApp.errorColor,
+              color: ThemeApp!.errorColor,
               height: 1,
               margin:
                   const EdgeInsets.symmetric(horizontal: 16),
@@ -215,7 +215,7 @@ class _SearchFieldSelectState extends State<SearchFieldSelect> {
                       alignment: AlignmentDirectional.centerStart,
                       child: Text(
                         formFieldState.errorText!,
-                        style: TextStyle(color: ThemeApp.errorColor, fontSize: 12),
+                        style: TextStyle(color: ThemeApp!.errorColor, fontSize: 12),
                       )),
                 ],
               ],

@@ -1,6 +1,6 @@
 name: form_io_builder
 description: "Build Form IO Form Json  ."
-version: 0.0.1
+version: 0.0.3
 homepage:
 
 environment:
@@ -20,6 +20,8 @@ dependencies:
   image_picker: 
   file_picker:
   cached_network_image: ^3.4.1
+  open_file: ^3.2.1 # Check for the latest version
+  path_provider: ^2.0.10
 
 dev_dependencies:
   flutter_test:

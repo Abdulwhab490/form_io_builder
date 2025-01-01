@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:form_io_builder/utils/utils.dart';
@@ -100,7 +101,7 @@ class _MultiFileUploaderState extends State<MultiFileUploader> {
   Future<void> _uploadFiles() async {
     Dio dio = Dio();
     String url = widget.Item['url']; // Replace with your server URL
-
+     print('===========================Url ==========$url ===============');
     for (var file in _files) {
       //String fileName = file.path.split('/').last;
       FormData formData = FormData.fromMap({
@@ -108,10 +109,12 @@ class _MultiFileUploaderState extends State<MultiFileUploader> {
             filename: file.fileName),
       });
       file.status = statusUpload.uploading;
+      
       // Uploading with progress
       try {
         var response = await dio.post(
           url,
+          options: Options(headers:widget.Item['options']!=null?json.decode(widget.Item['options'])['headers']:{}),
           data: formData,
           onSendProgress: (sent, total) {
             setState(() {
@@ -126,7 +129,7 @@ class _MultiFileUploaderState extends State<MultiFileUploader> {
           //_uploadedPaths.add(response.data['path']);
           // Adjust based on your server response
           file.status = statusUpload.uploaded;
-          file.onlinePath = response.data['path'];
+          file.onlinePath = response.data;
         } else {
           print(
               '==========Upload failed:===== ${response.statusCode}============= erroe ${response.data}');
@@ -148,6 +151,62 @@ class _MultiFileUploaderState extends State<MultiFileUploader> {
     // fieldFormkey.didChange(_files.where((e)=> e.status==statusUpload.uploaded).map((e)=>e.onlinePath));
   }
 
+
+Future<void> _DownloadFile(FileUplaod fileUplaod) async {
+    Dio dio = Dio();
+    String url = widget.Item['url']; // Replace with your server URL
+     print('===========================Url ==========$url ===============');
+
+      //String fileName = file.path.split('/').last;
+    
+   //   file.status = statusUpload.uploading;
+      
+     // fileUplaod.onlinePath?.split('/').last;
+      // Uploading with progress
+    var directry=await fileDirectory()+fileUplaod.onlinePath?.split('/').last;
+      try {
+        var response = await dio.download(
+          url,
+          directry,
+          options: Options(headers:widget.Item['options']!=null?json.decode(widget.Item['options'])['headers']:{}),
+          // data: formData,
+          onReceiveProgress: (sent, total) {
+            setState(() {
+              _uploadProgress = sent / total;
+              fileUplaod.progress = sent / total;
+            });
+          },
+        );
+
+        // Store the returned path from the server
+        if (response.statusCode == 200) {
+          //_uploadedPaths.add(response.data['path']);
+          // Adjust based on your server response
+          fileUplaod.status = statusUpload.uploaded;
+          fileUplaod.file =File(directry);
+          fileUplaod.fileName=fileUplaod.file?.path.split('/').last;
+        } else {
+          print(
+              '==========Upload failed:===== ${response.statusCode}============= erroe ${response.data}');
+          fileUplaod.status = statusUpload.error;
+          setState(() {});
+        }
+      } catch (e) {
+        print('Upload failed: $e');
+        fileUplaod.status = statusUpload.error;
+        setState(() {});
+      }
+    
+
+    // Reset progress after upload
+    setState(() {
+      _uploadProgress = 0;
+    });
+
+    // fieldFormkey.didChange(_files.where((e)=> e.status==statusUpload.uploaded).map((e)=>e.onlinePath));
+  }
+
+  
   void _removeFile(file) {
     setState(() {
       _files.remove(file);
@@ -207,7 +266,7 @@ class _MultiFileUploaderState extends State<MultiFileUploader> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
                                 border:
-                                    Border.all(color: ThemeApp.borderColor)),
+                                    Border.all(color: ThemeApp!.borderColor)),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(8),
                               child: _ImageWidget(
@@ -227,13 +286,13 @@ class _MultiFileUploaderState extends State<MultiFileUploader> {
                             Container(
                                 padding: EdgeInsets.all(10),
                                 decoration: BoxDecoration(
-                                  color: ThemeApp.borderColor,
+                                  color: ThemeApp!.borderColor,
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(12)),
                                 ),
                                 child: Icon(
                                   Icons.cloud_upload_sharp,
-                                  color: ThemeApp.primaryColor,
+                                  color: ThemeApp!.primaryColor,
                                 )),
                             SizedBox(
                               width: 10,
@@ -243,11 +302,11 @@ class _MultiFileUploaderState extends State<MultiFileUploader> {
                               children: [
                                 Text(
                                   '${widget.Item['label'] ?? 'attachments'}',
-                                  style: ThemeApp.headline1,
+                                  style: ThemeApp!.headline1,
                                 ),
                                 Text(
                                   'Upload files or photos',
-                                  style: ThemeApp.headline2,
+                                  style: ThemeApp!.hintStyle,
                                 ),
                               ],
                             ),
@@ -264,7 +323,7 @@ class _MultiFileUploaderState extends State<MultiFileUploader> {
 
               if (formFieldState.hasError) ...[
                 Container(
-                  color: ThemeApp.errorColor,
+                  color: ThemeApp!.errorColor,
                   height: 1,
                   margin: const EdgeInsets.symmetric(horizontal: 16),
                 ),
@@ -275,7 +334,7 @@ class _MultiFileUploaderState extends State<MultiFileUploader> {
                     child: Text(
                       formFieldState.errorText!,
                       style:
-                          TextStyle(color: ThemeApp.errorColor, fontSize: 12),
+                          TextStyle(color: ThemeApp!.errorColor, fontSize: 12),
                     )),
               ],
             ],
@@ -355,7 +414,7 @@ class _ImageWidget extends StatelessWidget {
               builder: (context) => _ShowImageDialog(image: image!)),
           child: image!=null?
               Image.file(File(image!),
-                  key: GlobalKey(),
+                  key: GlobalKey(),                                     
                   fit: BoxFit.cover,
                   height: double.infinity,
                   width: double.infinity)
@@ -397,10 +456,10 @@ class _ImageWidget extends StatelessWidget {
           child: Container(
             alignment: Alignment.center,
             height: 40,
-            color: ThemeApp.errorColor,
+            color: ThemeApp!.errorColor,
             child: Icon(
               Icons.delete,
-              color: ThemeApp.onPrimaryColor,
+              color: ThemeApp!.onPrimaryColor,
             ),
           ),
         ),
@@ -419,7 +478,7 @@ class _ImageWidget extends StatelessWidget {
               child: LinearProgressIndicator(
                 borderRadius: BorderRadius.circular(5),
                 value: fileUplaod.progress,
-                color: ThemeApp.primaryColor,
+                color: ThemeApp!.primaryColor,
                 //  backgroundColor: Colors.black87,
                 minHeight: 10,
               ),
@@ -432,7 +491,7 @@ class _ImageWidget extends StatelessWidget {
                 backgroundColor: Colors.black26,
                 child: Icon(
                   Icons.file_upload_outlined,
-                  color: ThemeApp.onPrimaryColor,
+                  color: ThemeApp!.onPrimaryColor,
                 )),
           ),
         if (fileUplaod.status == statusUpload.error)
@@ -442,7 +501,7 @@ class _ImageWidget extends StatelessWidget {
                 backgroundColor: Colors.black26,
                 child: Icon(
                   Icons.file_upload_off,
-                  color: ThemeApp.errorColor,
+                  color: ThemeApp!.errorColor,
                 )),
           ),
       ],

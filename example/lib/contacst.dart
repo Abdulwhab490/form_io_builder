@@ -163,24 +163,24 @@ final form1={
             "type": "select",
             "input": true
         },
-         {
-            "label": "Text Field",
-            "applyMaskOn": "change",
-            "tableView": true,
-            "validate": {
-                "required": true,
-                "pattern": "r^9[0k]",
-                "customMessage": "asddd",
-                "minLength": 12,
-                "maxLength": 12,
-                "minWords": 2,
-                "maxWords": 10
-            },
-            "validateWhenHidden": false,
-            "key": "textField666",
-            "type": "textfield",
-            "input": true
-        },
+        //  {
+        //     "label": "Text Field",
+        //     "applyMaskOn": "change",
+        //     "tableView": true,
+        //     "validate": {
+        //         "required": true,
+        //         "pattern": "r^9[0k]",
+        //         "customMessage": "asddd",
+        //         "minLength": 12,
+        //         "maxLength": 12,
+        //         "minWords": 2,
+        //         "maxWords": 10
+        //     },
+        //     "validateWhenHidden": false,
+        //     "key": "textField666",
+        //     "type": "textfield",
+        //     "input": true
+        // },
         {
             "type": "button",
             "label": "Submit",

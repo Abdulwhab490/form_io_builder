@@ -20,7 +20,7 @@ class FormScreenWedgit extends StatelessWidget{
         builder: (context) => Directionality(
           textDirection: TextDirection.rtl,
           child: AlertDialog(
-            title: Text("هل تريد الرجوع؟", style: ThemeApp.headline1),
+            title: Text("هل تريد الرجوع؟", style: ThemeApp!.headline1),
             actions: <Widget>[
               TextButton(
                 onPressed: () => Navigator.of(context).pop(false),
@@ -60,7 +60,7 @@ class FormScreenWedgit extends StatelessWidget{
                   ... [ 
                  //  const SizedBox(height: 8,),
                    ElevatedButton(
-                     
+                     style:ButtonStyle(backgroundColor: WidgetStatePropertyAll(ThemeApp!.primaryColor)),
                      onPressed: () {
                            if (operationType ==
                                OperationType.show ||
@@ -73,7 +73,7 @@ class FormScreenWedgit extends StatelessWidget{
                            
                      },
                      
-                     child:Text("حفظ"),
+                     child:Text("حفظ",style: ThemeApp!.buttonTextStyle,),
                    ),
                        ]
                      
