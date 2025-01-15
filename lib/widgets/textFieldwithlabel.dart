@@ -377,10 +377,15 @@ Widget textFieldNum(Item, Map<String, dynamic> map, pType, {row,minLines=1,show=
                  FormBuilderValidators.required(errorText: Item['validate']['customMessage']??'Field is Required'),
                  FormBuilderValidators.numeric( errorText: 'Number Field '),
 
-                  if(Item['validate'] != null && Item['validate']['minLength']!=null)
+                 if(Item['validate'] != null && Item['validate']['minLength']!=null)
                   FormBuilderValidators.minLength(Item['validate']['minLength'] ,errorText: 'error min Length is ${Item['validate']['minLength']}'),
                     if(Item['validate'] != null && Item['validate']['maxLength']!=null)
-                  FormBuilderValidators.minLength(Item['validate']['maxLength'] ,errorText: 'error max Length is ${Item['validate']['maxLength']}'),
+                  FormBuilderValidators.maxLength(Item['validate']['maxLength'] ,errorText: 'error max Length is ${Item['validate']['maxLength']}'),
+
+                 if(Item['validate'] != null && Item['validate']['min']!=null)
+                  FormBuilderValidators.min(Item['validate']['min'] ,errorText: 'error min  is ${Item['validate']['min']}'),
+                    if(Item['validate'] != null && Item['validate']['max']!=null)
+                  FormBuilderValidators.max(Item['validate']['max'] ,errorText: 'error max  is ${Item['validate']['max']}'),
 
                 if(Item['validate'] != null && Item['validate']['pattern']!=null)
                   FormBuilderValidators.match(RegExp(Item['validate']['pattern']) ,errorText: 'error patternis ${Item['validate']['pattern']}'),   
@@ -453,7 +458,7 @@ Widget textFieldPhone(Item, Map<String, dynamic> map, pType, {row,minLines=1,sho
                 if(Item['validate'] != null && Item['validate']['minLength']!=null)
                   FormBuilderValidators.minLength(Item['validate']['minLength'] ,errorText: 'error min Length is ${Item['validate']['minLength']}'),
                 if(Item['validate'] != null && Item['validate']['maxLength']!=null)
-                  FormBuilderValidators.minLength(Item['validate']['maxLength'] ,errorText: 'error max Length is ${Item['validate']['maxLength']}'),
+                  FormBuilderValidators.maxLength(Item['validate']['maxLength'] ,errorText: 'error max Length is ${Item['validate']['maxLength']}'),
 
                 if(Item['validate'] != null && Item['validate']['pattern']!=null)
                   FormBuilderValidators.match(RegExp(Item['validate']['pattern']) ,errorText: 'error match pattern is ${Item['validate']['pattern']}'),   
